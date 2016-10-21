@@ -33,14 +33,14 @@
 
 Some favorites plugins i always install. I'm not a fan of autocompletion, so I don't use SublimeCodeIntel.
 
-[Advanced New File](https://github.com/skuroda/Sublime-AdvancedNewFile)
-[All Autocomplete](https://github.com/alienhard/SublimeAllAutocomplete)
-[BracketHighlighter](https://github.com/facelessuser/BracketHighlighter)
-[GitGutter](https://github.com/jisaacks/GitGutter)
-[SidebarEnhancements](https://github.com/titoBouzout/SideBarEnhancements)
-[Theme Lanzhou](https://github.com/kliu/sublime-theme-lanzhou)
-[SASS](https://github.com/nathos/sass-textmate-bundle)
-[EditorConfig](https://github.com/sindresorhus/editorconfig-sublime)
+* [Advanced New File](https://github.com/skuroda/Sublime-AdvancedNewFile)  
+* [All Autocomplete](https://github.com/alienhard/SublimeAllAutocomplete)  
+* [BracketHighlighter](https://github.com/facelessuser/BracketHighlighter)  
+* [GitGutter](https://github.com/jisaacks/GitGutter)
+* [SidebarEnhancements](https://github.com/titoBouzout/SideBarEnhancements)  
+* [Theme Lanzhou](https://github.com/kliu/sublime-theme-lanzhou)  
+* [SASS](https://github.com/nathos/sass-textmate-bundle)  
+* [EditorConfig](https://github.com/sindresorhus/editorconfig-sublime)
 
 ## hotkeys
 
