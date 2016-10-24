@@ -1,47 +1,22 @@
-# sublime text 3 things
+## setup
 
-## settings
+saving my development enviroment setup on mac osx.
 
-```
-{
-	"auto_complete": true,
-	"auto_complete_selector": "source, text",
-	"default_line_ending": "unix",
-	"detect_slow_plugins": false,
-	"ensure_newline_at_eof_on_save": true,
-	"ignored_packages":
-	[
-		"Vintage"
-	],
-	"index_files": true,
-	"rulers":
-	[
-		120
-	],
-	"show_definitions": false,
-	"show_minimap": false,
-	"tab_completion": false,
-	"tab_size": 2,
-	"theme": "Lanzhou.sublime-theme",
-	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true,
-	"word_wrap": false
-}
-```
+### softwares
 
-## plugins
+* [Sublime Text 3](https://www.sublimetext.com/3)
+* [Vargant](https://www.vagrantup.com/downloads.html)
+* [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+* [Haroopad](http://pad.haroopress.com/user.html)
+* [iTerm2](https://www.iterm2.com/downloads.html)
 
-Some favorites plugins i always install. I'm not a fan of autocompletion, so I don't use SublimeCodeIntel.
+### packages
 
-* [Advanced New File](https://github.com/skuroda/Sublime-AdvancedNewFile)  
-* [All Autocomplete](https://github.com/alienhard/SublimeAllAutocomplete)  
-* [BracketHighlighter](https://github.com/facelessuser/BracketHighlighter)  
-* [GitGutter](https://github.com/jisaacks/GitGutter)
-* [SidebarEnhancements](https://github.com/titoBouzout/SideBarEnhancements)  
-* [Theme Lanzhou](https://github.com/kliu/sublime-theme-lanzhou)  
-* [SASS](https://github.com/nathos/sass-textmate-bundle)  
-* [EditorConfig](https://github.com/sindresorhus/editorconfig-sublime)
-
-## hotkeys
-
-TODO
+* [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+* [php-brew](https://github.com/phpbrew/phpbrew)
+* [rbenv](https://github.com/rbenv/rbenv)
+* [sass](http://sass-lang.com/install)
+* [bundler](http://bundler.io/)
+* [nodejs](https://nodejs.org/en/download/package-manager/)
+* [composer](https://getcomposer.org/doc/00-intro.md#globally)
+* [homebrew](http://brew.sh/)
