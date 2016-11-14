@@ -1,6 +1,6 @@
-export ZSH=/Users/1pacvietnam/.oh-my-zsh
+export ZSH=/home/unchi/.oh-my-zsh
 ZSH_THEME="steeef"
-plugins=(git rails rake bundler composer sublime vagrant)
+plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
@@ -36,3 +36,19 @@ alias vz="vim ~/.zshrc"
 alias mv="mv -i"
 alias rm="rm -i"
 alias cp="cp -i"
+alias pbcopy="xclip -selection clipboard -i"
+alias pbpaste="xclip -selection clipboard -o"
+
+
+# PHPBREW
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# SSH-AGENT
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l | grep "The agent has no identities" && ssh-add /home/unchi/.ssh/github_rsa
