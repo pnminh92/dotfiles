@@ -1,5 +1,9 @@
 set nocompatible
 
+if has("nvim")
+  set termguicolors
+endif
+
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -28,17 +32,23 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'mileszs/ack.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'chriskempson/base16-vim'
 
 call vundle#end()
 filetype plugin indent on
 
-syntax enable
-colorscheme badwolf
+syntax on
+colorscheme base16-railscasts
+let t_CO=256
+
+let g:is_posix = 1
 
 " Ruler
 set ruler
 set textwidth=120
 set colorcolumn=+1
+set nowrap
+set number
 
 " Save settings
 set encoding=utf-8
@@ -51,8 +61,6 @@ set shiftwidth=2
 set shiftround
 set softtabstop=2
 set expandtab
-
-set number
 
 " Search settings
 set hlsearch
@@ -73,22 +81,36 @@ set nojoinspaces
 set splitbelow
 set splitright
 
+" Autoload file changes
+set autoread
+
+" Disable mouse
+set mouse=""
+
+" Copy to clipboard
+set clipboard=unnamed
+
 " Map keys
+let mapleader=","
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-nmap <C-k> :NERDTreeToggle<CR>
-nmap <F2> :nohl<CR>
-nmap <C-w> :FixWhitespace<CR>
+nnoremap <C-k> :NERDTreeToggle<CR>
+nnoremap <Esc><Esc> :nohl<CR>
+nnoremap <Leader>s :FixWhitespace<CR>
 
 " Plugin settings
 set laststatus=2
-let g:airline_theme='badwolf'
+let g:airline_theme='base16'
 
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 endif
 
-let g:indentLine_char = '|'
+let g:airline_left_sep = ''        " Remove arrow symbols.
+let g:airline_left_alt_sep = ''    " Remove arrow symbols.
+let g:airline_right_sep = ''       " Remove arrow symbols.
+let g:airline_right_alt_sep = ''   " Remove arrow symbols.
+let g:indentLine_char = '┆'

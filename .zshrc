@@ -38,7 +38,8 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias pbcopy="xclip -selection clipboard -i"
 alias pbpaste="xclip -selection clipboard -o"
-
+alias vim="/usr/bin/nvim"
+alias vvrc="vim ~/.vimrc"
 
 # PHPBREW
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
@@ -52,3 +53,9 @@ if [ ! -S ~/.ssh/ssh_auth_sock ]; then
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 ssh-add -l | grep "The agent has no identities" && ssh-add /home/unchi/.ssh/github_rsa
+
+export TERM=xterm-256color
+
+# Binding keys
+stty intr ^Z
+setxkbmap -option caps:ctrl_modifier
