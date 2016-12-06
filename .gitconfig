@@ -1,0 +1,23 @@
+[user]
+    name = Minh Phan
+    email = wofi.minh@1pac.vn
+[core]
+    attributesfile = ~/.gitattributes_global
+    excludesfile = ~/.gitignore_global
+    editor = nvim
+[color]
+    ui = true
+[github]
+    user = wofi.minh
+[push]
+    default = simple
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[merge]
+    tool = vimdiff
+[mergetool]
+    prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'

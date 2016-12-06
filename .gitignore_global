@@ -1,0 +1,22 @@
+# operation files
+.Spotlight-V100
+.Trashes
+._*
+Icon?
+Thumbs.db
+ehthumbs.db
+*~
+.DS_Store
+
+# other VCS
+.hg/
+.svn/
+
+## Editor generated files ##
+.*.sw[p|o|n]
+*.sw[p|o|n]
+*.un~
+*\#*
+*~
+\#*\#
+/tags
