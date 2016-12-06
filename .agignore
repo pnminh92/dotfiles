@@ -1,8 +1,8 @@
 .git
-/doc
-/tags
-/log
-/tmp
-/vendor
-/node_modules
-/bower_components
+doc
+tags
+log
+tmp
+vendor
+node_modules
+bower_components
