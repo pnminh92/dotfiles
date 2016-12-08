@@ -33,6 +33,8 @@ Plugin 'mileszs/ack.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'chriskempson/base16-vim'
+Plugin '907th/vim-auto-save'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 call vundle#end()
 filetype plugin indent on
@@ -52,7 +54,7 @@ set number
 
 " Save settings
 set encoding=utf-8
-set fileformats=unix,dos
+set fileformats=unix
 
 " Tab settings
 set backspace=2
@@ -83,6 +85,7 @@ set splitright
 
 " Autoload file changes
 set autoread
+au CursorHold * checktime
 
 " Disable mouse
 set mouse=""
@@ -102,15 +105,20 @@ nnoremap <Esc><Esc> :nohl<CR>
 nnoremap <Leader>s :FixWhitespace<CR>
 
 " Plugin settings
-set laststatus=2
-let g:airline_theme='base16'
+let g:auto_save = 1
 
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 endif
 
+set laststatus=2
+let g:airline_theme = 'base16'
 let g:airline_left_sep = ''        " Remove arrow symbols.
 let g:airline_left_alt_sep = ''    " Remove arrow symbols.
 let g:airline_right_sep = ''       " Remove arrow symbols.
 let g:airline_right_alt_sep = ''   " Remove arrow symbols.
 let g:indentLine_char = '┆'
+
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_use_caching = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
