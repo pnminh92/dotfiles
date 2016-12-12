@@ -100,9 +100,12 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-nnoremap <C-k> :NERDTreeToggle<CR>
+nnoremap <C-k> :NERDTreeTabsToggle<CR>
 nnoremap <Esc><Esc> :nohl<CR>
 nnoremap <Leader>s :FixWhitespace<CR>
+
+vnoremap d "_d
+nnoremap d "_d
 
 " Plugin settings
 let g:auto_save = 1
