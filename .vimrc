@@ -14,6 +14,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-rails'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-markdown'
@@ -100,12 +101,14 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-nnoremap <C-k> :NERDTreeTabsToggle<CR>
+nnoremap <Leader>k :NERDTreeTabsToggle<CR>
 nnoremap <Esc><Esc> :nohl<CR>
 nnoremap <Leader>s :FixWhitespace<CR>
 
 vnoremap d "_d
 nnoremap d "_d
+vnoremap D "_D
+nnoremap D "_D
 
 " Plugin settings
 let g:auto_save = 1
