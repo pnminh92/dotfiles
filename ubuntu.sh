@@ -12,6 +12,7 @@ sudo apt install software-center
 sudo apt install silversearcher-ag
 sudo apt install tmux
 sudo apt install gnome-terminal
+sudo apt install exuberant-ctags
 
 # zsh
 sudo apt install zsh

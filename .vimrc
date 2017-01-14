@@ -36,6 +36,7 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'chriskempson/base16-vim'
 Plugin '907th/vim-auto-save'
 Plugin 'JamshedVesuna/vim-markdown-preview'
+Plugin 'craigemery/vim-autotag'
 
 call vundle#end()
 filetype plugin indent on
@@ -43,7 +44,6 @@ filetype plugin indent on
 syntax on
 colorscheme base16-railscasts
 let t_CO=256
-
 let g:is_posix = 1
 
 " Ruler

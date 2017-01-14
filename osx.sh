@@ -23,6 +23,7 @@ brew install neovim/neovim/neovim
 brew install iterm2
 brew install tmux
 brew install zsh
+brew install ctags
 
 # copy dotfiles
 git clone https://github.com/wofi-minh/dotfiles.git ~/Projects/dotfiles
