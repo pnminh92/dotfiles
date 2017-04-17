@@ -17,7 +17,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-rails'
 Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-markdown'
 Plugin 'Yggdroot/indentLine'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'valloric/youcompleteme'
@@ -25,7 +24,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tpope/vim-haml'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'pangloss/vim-javascript'
@@ -35,8 +33,8 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'chriskempson/base16-vim'
 Plugin '907th/vim-auto-save'
-Plugin 'JamshedVesuna/vim-markdown-preview'
-Plugin 'craigemery/vim-autotag'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'posva/vim-vue'
 
 call vundle#end()
 filetype plugin indent on
@@ -132,3 +130,5 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:vim_json_syntax_conceal = 0
 
 let vim_markdown_preview_hotkey='<C-m>'
+
+let g:nerdtree_tabs_synchronize_view = 0 " Fix strange display when close tab
