@@ -1,16 +1,17 @@
 export ZSH=/Users/minh/.oh-my-zsh
 ZSH_THEME="steeef"
-plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting)
+plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting heroku npm gem zsh-wakatime)
 
 source $ZSH/oh-my-zsh.sh
 source /Users/minh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /Users/minh/.phpbrew/bashrc
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 eval "$(rbenv init -)"
 
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/node@4/bin:$PATH"
 
 HISTFILE=~/.zsh_history
 SAVEHIST=99999
@@ -44,3 +45,5 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias vim="/usr/local/bin/nvim"
 alias vvrc="vim ~/.vimrc"
+
+bindkey -v
