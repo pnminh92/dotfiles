@@ -111,6 +111,9 @@ nnoremap d "_d
 vnoremap D "_D
 nnoremap D "_D
 
+" Set syntax highlighting for special ext
+au BufReadPost *.ejs set syntax=html
+
 " Plugin settings
 let g:auto_save = 1
 

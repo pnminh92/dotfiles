@@ -1,6 +1,6 @@
 export ZSH=/Users/minh/.oh-my-zsh
 ZSH_THEME="steeef"
-plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting heroku npm gem zsh-wakatime)
+plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting heroku npm gem zsh-wakatime vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 source /Users/minh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -11,7 +11,9 @@ export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/node@4/bin:$PATH"
+export PATH="/usr/local/opt/node/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+export HOMEBREW_GITHUB_API_TOKEN=630651d48d488fa80e821c6f716d110fc2a77b65
 
 HISTFILE=~/.zsh_history
 SAVEHIST=99999
@@ -47,3 +49,4 @@ alias vim="/usr/local/bin/nvim"
 alias vvrc="vim ~/.vimrc"
 
 bindkey -v
+bindkey '^R' history-incremental-search-backward
