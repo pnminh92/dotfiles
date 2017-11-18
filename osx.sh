@@ -7,6 +7,16 @@ brew tap caskroom/cask
 brew cask install macdown
 brew cask install google-chrome
 brew cask install sequel-pro
+brew cask install psequel
+brew cask install karabiner
+brew cask install virtualbox
+brew cask install vagrant
+brew cask install the-unarchiver
+brew cask install skype
+brew cask install evernote
+brew cask install sublime-text
+brew cask install ngrok
+brew cask install pencil
 
 brew install rbenv
 brew install node@8
