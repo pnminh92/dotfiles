@@ -6,14 +6,11 @@ brew tap caskroom/cask
 
 brew cask install macdown
 brew cask install google-chrome
-brew cask install smartgit
-brew cask install pgadmin4
 brew cask install sequel-pro
-brew cask install libreoffice
 
 brew install rbenv
+brew install node@8
 brew install phpbrew
-brew install nodebrew
 brew install python
 brew install nginx
 brew install mysql
@@ -24,8 +21,18 @@ brew install iterm2
 brew install tmux
 brew install zsh
 brew install ctags
+brew install yarn
 
+npm install -g gulp-cli
+npm install -g grunt-cli
+npm install -g lodash-cli
+npm install -g vue-cli
+
+gem install bundler
 gem install tmuxinator
+gem install sass
+gem install scss-lint
+gem install iStats
 
 # copy dotfiles
 git clone https://github.com/wofi-minh/dotfiles.git ~/Projects/dotfiles
