@@ -37,6 +37,7 @@ npm install -g gulp-cli
 npm install -g grunt-cli
 npm install -g lodash-cli
 npm install -g vue-cli
+npm install -g yarn
 
 gem install bundler
 gem install tmuxinator
