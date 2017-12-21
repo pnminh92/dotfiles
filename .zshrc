@@ -1,10 +1,21 @@
-export ZSH=/home/unchi/.oh-my-zsh
+export ZSH=/Users/minh/.oh-my-zsh
 ZSH_THEME="steeef"
-plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting)
+plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting heroku npm gem zsh-wakatime vi-mode)
+
 source $ZSH/oh-my-zsh.sh
+source /Users/minh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+eval "$(rbenv init -)"
 
 export LANG=en_US.UTF-8
-export EDITOR="vim"
+export EDITOR="nvim"
+export TERM=xterm-256color
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/node/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+export HOMEBREW_GITHUB_API_TOKEN=af6deb2258aa2045f35cabdd4c7fd7606dcba855
+
+export CLOUDINARY_URL=cloudinary://181265141548511:lCDYnUOwvzXUFGohkk_2E1uLVMo@buildcauhinh
 
 HISTFILE=~/.zsh_history
 SAVEHIST=99999
@@ -36,26 +47,8 @@ alias vz="vim ~/.zshrc"
 alias mv="mv -i"
 alias rm="rm -i"
 alias cp="cp -i"
-alias pbcopy="xclip -selection clipboard -i"
-alias pbpaste="xclip -selection clipboard -o"
-alias vim="/usr/bin/nvim"
+alias vim="/usr/local/bin/nvim"
 alias vvrc="vim ~/.vimrc"
 
-# PHPBREW
-[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-# SSH-AGENT
-if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-  eval `ssh-agent`
-  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-fi
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-ssh-add -l | grep "The agent has no identities" && ssh-add /home/unchi/.ssh/github_rsa
-
-export TERM=xterm-256color
-
-# Binding keys
-stty intr ^Z
-setxkbmap -option caps:ctrl_modifier
+bindkey -v
+bindkey '^R' history-incremental-search-backward
