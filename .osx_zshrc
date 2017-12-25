@@ -1,9 +1,10 @@
 export ZSH=/Users/minh/.oh-my-zsh
 ZSH_THEME="steeef"
-plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting heroku npm gem zsh-wakatime vi-mode)
+plugins=(git rails rake bundler composer sublime vagrant heroku npm gem vi-mode)
 
 source $ZSH/oh-my-zsh.sh
-source /Users/minh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 eval "$(rbenv init -)"
 
@@ -13,7 +14,7 @@ export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/node/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
-export HOMEBREW_GITHUB_API_TOKEN=630651d48d488fa80e821c6f716d110fc2a77b65
+export HOMEBREW_GITHUB_API_TOKEN=af6deb2258aa2045f35cabdd4c7fd7606dcba855
 
 HISTFILE=~/.zsh_history
 SAVEHIST=99999
