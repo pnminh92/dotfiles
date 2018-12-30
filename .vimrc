@@ -14,12 +14,11 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Yggdroot/indentLine'
-Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
@@ -38,6 +37,11 @@ Plugin 'posva/vim-vue'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'mattn/emmet-vim'
 Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'alvan/vim-closetag'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 call vundle#end()
 filetype plugin indent on
@@ -57,7 +61,6 @@ set number
 " Save settings
 set encoding=utf-8
 set fileformats=unix
-
 " Tab settings
 set backspace=2
 set tabstop=2
@@ -102,9 +105,12 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-nnoremap <Leader>k :NERDTreeTabsToggle<CR>
+nnoremap <Leader>k :NERDTreeToggle<CR>
 nnoremap <Esc><Esc> :nohl<CR>
 nnoremap <Leader>s :FixWhitespace<CR>
+nnoremap <leader>. :CtrlPTag<CR>
+
+vnoremap // y/<C-R>"<CR>
 
 vnoremap d "_d
 nnoremap d "_d
@@ -118,7 +124,7 @@ au BufReadPost *.ejs set syntax=html
 let g:auto_save = 1
 
 if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep'
 endif
 
 set laststatus=2
@@ -135,4 +141,8 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 let g:vim_json_syntax_conceal = 0
 
-let g:nerdtree_tabs_synchronize_view = 0 " Fix strange display when close tab
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<S-q>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
