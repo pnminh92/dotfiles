@@ -4,18 +4,18 @@ plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting
 
 source $ZSH/oh-my-zsh.sh
 source /Users/minh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
-eval "$(rbenv init -)"
+source ~/.bin/tmuxinator.zsh
 
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/node/bin:$PATH"
-export NVM_DIR="$HOME/.nvm"
-export HOMEBREW_GITHUB_API_TOKEN=af6deb2258aa2045f35cabdd4c7fd7606dcba855
+export PATH="/usr/local/opt/node@8/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/usr/local/opt/elasticsearch@2.4/bin:$PATH"
 
-export CLOUDINARY_URL=cloudinary://181265141548511:lCDYnUOwvzXUFGohkk_2E1uLVMo@buildcauhinh
+eval "$(rbenv init -)"
 
 HISTFILE=~/.zsh_history
 SAVEHIST=99999
@@ -34,6 +34,7 @@ setopt hist_expire_dups_first
 setopt hist_find_no_dups
 setopt hist_no_store
 setopt hist_verify
+unsetopt BEEP
 
 setopt auto_cd
 setopt auto_pushd
@@ -49,6 +50,9 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias vim="/usr/local/bin/nvim"
 alias vvrc="vim ~/.vimrc"
+alias be1666="bundle _1.16.6_ exec"
+alias be1661="bundle _1.16.1_ exec"
+alias ctags="`brew --prefix`/bin/ctags"
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
