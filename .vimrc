@@ -42,6 +42,9 @@ Plugin 'alvan/vim-closetag'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'rizzatti/dash.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'AndrewRadev/splitjoin.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -53,10 +56,10 @@ let g:is_posix = 1
 
 " Ruler
 set ruler
-set textwidth=120
+set textwidth=100
 set colorcolumn=+1
 set nowrap
-set number
+set number relativenumber
 
 " Save settings
 set encoding=utf-8
@@ -106,6 +109,8 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 nnoremap <Leader>k :NERDTreeToggle<CR>
+nnoremap <Leader>l :NERDTreeFind<CR>
+nnoremap <Leader>f :Dash<CR>
 nnoremap <Esc><Esc> :nohl<CR>
 nnoremap <Leader>s :FixWhitespace<CR>
 nnoremap <leader>. :CtrlPTag<CR>
@@ -128,7 +133,7 @@ if executable('ag')
 endif
 
 set laststatus=2
-let g:airline_theme = 'base16'
+let g:airline_theme = 'base16_railscasts'
 let g:airline_left_sep = ''        " Remove arrow symbols.
 let g:airline_left_alt_sep = ''    " Remove arrow symbols.
 let g:airline_right_sep = ''       " Remove arrow symbols.
@@ -142,7 +147,7 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:vim_json_syntax_conceal = 0
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<S-q>"
+let g:UltiSnipsExpandTrigger="<Leader-q>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
