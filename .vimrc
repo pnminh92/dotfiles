@@ -34,6 +34,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin '907th/vim-auto-save'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'posva/vim-vue'
+Plugin 'wakatime/vim-wakatime'
 Plugin 'mattn/emmet-vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'mxw/vim-jsx'
@@ -44,6 +45,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'rizzatti/dash.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'godlygeek/tabular'
 
 call vundle#end()
 filetype plugin indent on
@@ -150,3 +152,10 @@ let g:UltiSnipsExpandTrigger="<Leader-q>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+if exists(':Tabularize')
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+end
