@@ -1,6 +1,6 @@
 export ZSH=/Users/minh/.oh-my-zsh
 ZSH_THEME="steeef"
-plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting heroku npm gem zsh-wakatime vi-mode)
+plugins=(git rails rake bundler composer sublime vagrant zsh-syntax-highlighting heroku npm gem vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 source /Users/minh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -13,7 +13,6 @@ export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/node@8/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="/usr/local/opt/elasticsearch@2.4/bin:$PATH"
 
 eval "$(rbenv init -)"
 
@@ -50,8 +49,6 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias vim="/usr/local/bin/nvim"
 alias vvrc="vim ~/.vimrc"
-alias be1666="bundle _1.16.6_ exec"
-alias be1661="bundle _1.16.1_ exec"
 alias ctags="`brew --prefix`/bin/ctags"
 
 bindkey -v
