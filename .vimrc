@@ -23,22 +23,17 @@ Plugin 'tpope/vim-surround'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mileszs/ack.vim'
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'chriskempson/base16-vim'
 Plugin '907th/vim-auto-save'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'posva/vim-vue'
-Plugin 'wakatime/vim-wakatime'
 Plugin 'mattn/emmet-vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'mxw/vim-jsx'
-Plugin 'alvan/vim-closetag'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'rizzatti/dash.vim'
@@ -46,6 +41,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'itchyny/lightline.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -60,7 +56,11 @@ set ruler
 set textwidth=100
 set colorcolumn=+1
 set nowrap
-set number relativenumber
+set number
+set regexpengine=1
+set noshowcmd
+set synmaxcol=200
+set nocursorline
 
 " Save settings
 set encoding=utf-8
@@ -134,16 +134,14 @@ if executable('ag')
 endif
 
 set laststatus=2
-let g:airline_theme = 'base16_railscasts'
-let g:airline_left_sep = ''        " Remove arrow symbols.
-let g:airline_left_alt_sep = ''    " Remove arrow symbols.
-let g:airline_right_sep = ''       " Remove arrow symbols.
-let g:airline_right_alt_sep = ''   " Remove arrow symbols.
 let g:indentLine_char = '┆'
 
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_use_caching = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$'
+  \ }
 
 let g:vim_json_syntax_conceal = 0
 
@@ -160,6 +158,10 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 
 let g:multi_cursor_select_all_word_key = '<C-a>'
 let g:multi_cursor_select_all_key      = 'g<C-a>'
+
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ }
 
 " Use to break word to newline
 command! -bang -nargs=* -range LineBreakAt <line1>,<line2>call LineBreakAt('<bang>', <f-args>)
