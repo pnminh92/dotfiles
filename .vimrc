@@ -14,7 +14,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-rails'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'kien/ctrlp.vim'
@@ -34,26 +33,25 @@ Plugin 'posva/vim-vue'
 Plugin 'mattn/emmet-vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'mxw/vim-jsx'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'rizzatti/dash.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'itchyny/lightline.vim'
+Plugin 'AutoComplPop'
+Plugin 'mbbill/undotree'
 
 call vundle#end()
 filetype plugin indent on
 
 syntax on
-colorscheme base16-railscasts
+colorscheme base16-onedark
 let t_CO=256
 let g:is_posix = 1
 
 " Ruler
 set ruler
-set textwidth=100
+set textwidth=80
 set colorcolumn=+1
 set nowrap
 set number
@@ -102,6 +100,12 @@ set mouse=""
 " Copy to clipboard
 set clipboard=unnamed
 
+set nrformats=
+nnoremap + <C-a>
+nnoremap - <C-x>
+xnoremap + g<C-a>
+xnoremap - g<C-x>
+
 " Map keys
 let mapleader=","
 noremap <Up> <NOP>
@@ -145,12 +149,6 @@ let g:ctrlp_custom_ignore = {
 
 let g:vim_json_syntax_conceal = 0
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<Leader-q>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
@@ -160,8 +158,15 @@ let g:multi_cursor_select_all_word_key = '<C-a>'
 let g:multi_cursor_select_all_key      = 'g<C-a>'
 
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'one',
       \ }
+
+" store undo states
+nnoremap <Leader>z :UndotreeToggle<cr>
+if has("persistent_undo")
+  set undodir=$HOME"/.undodir"
+  set undofile
+endif
 
 " Use to break word to newline
 command! -bang -nargs=* -range LineBreakAt <line1>,<line2>call LineBreakAt('<bang>', <f-args>)
