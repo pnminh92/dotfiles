@@ -39,7 +39,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'itchyny/lightline.vim'
 Plugin 'AutoComplPop'
-Plugin 'mbbill/undotree'
+Plugin 'nelsyeung/twig.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -159,14 +159,19 @@ let g:multi_cursor_select_all_key      = 'g<C-a>'
 
 let g:lightline = {
       \ 'colorscheme': 'one',
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
       \ }
 
-" store undo states
-nnoremap <Leader>z :UndotreeToggle<cr>
-if has("persistent_undo")
-  set undodir=$HOME"/.undodir"
-  set undofile
-endif
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
 
 " Use to break word to newline
 command! -bang -nargs=* -range LineBreakAt <line1>,<line2>call LineBreakAt('<bang>', <f-args>)
