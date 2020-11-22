@@ -44,7 +44,7 @@ call plug#end()
 filetype plugin indent on
 
 syntax on
-colorscheme base16-onedark
+colorscheme base16-github
 let t_CO=256
 let g:is_posix = 1
 
@@ -151,7 +151,7 @@ let g:multi_cursor_select_all_word_key = '<C-a>'
 let g:multi_cursor_select_all_key      = 'g<C-a>'
 
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'Tomorrow',
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
       \ }
@@ -316,3 +316,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
