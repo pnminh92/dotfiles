@@ -40,6 +40,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'nelsyeung/twig.vim'
 Plug 'ajh17/VimCompletesMe'
+Plug 'dense-analysis/ale'
+Plug 'maximbaz/lightline-ale'
 
 call plug#end()
 filetype plugin indent on
@@ -211,3 +213,36 @@ set signcolumn=yes
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 let vim_markdown_preview_github=1
+
+let g:ale_fixers = {
+\ 'javascript': ['prettier']
+\}
+let g:ale_fix_on_save = 1
+let g:ale_linters = {
+\   'ruby': ['rubocop'],
+\}
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+let g:ale_ruby_rubocop_executable = 'bundle'
+
+let g:lightline = {}
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_infos': 'lightline#ale#infos',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
+      \ }
+let g:lightline.active = { 'right': [
+      \ [ 'lineinfo' ],
+      \ [ 'percent' ],
+      \ [ 'fileformat', 'fileencoding', 'filetype' ],
+      \ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
+
