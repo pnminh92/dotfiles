@@ -194,10 +194,6 @@ endfunction
 " if hidden is not set, TextEdit might fail.
 set hidden
 
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
 " Better display for messages
 set cmdheight=1
 
@@ -215,9 +211,9 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 let vim_markdown_preview_github=1
 
 let g:ale_fixers = {
-\ 'javascript': ['prettier']
+\   'ruby': ['rubocop'],
+\   'javascript': ['prettier']
 \}
-let g:ale_fix_on_save = 1
 let g:ale_linters = {
 \   'ruby': ['rubocop'],
 \}
@@ -225,7 +221,6 @@ let g:ale_linters = {
 let g:ale_linters_explicit = 1
 let g:ale_ruby_rubocop_executable = 'bundle'
 
-let g:lightline = {}
 let g:lightline.component_expand = {
       \  'linter_checking': 'lightline#ale#checking',
       \  'linter_infos': 'lightline#ale#infos',
