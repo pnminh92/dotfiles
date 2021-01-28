@@ -1,6 +1,6 @@
 export ZSH=/Users/minh/.oh-my-zsh
 ZSH_THEME="steeef"
-plugins=(git rake bundler composer sublime vagrant heroku npm gem vi-mode)
+plugins=(git rake bundler composer sublime vagrant heroku npm gem vi-mode yarn docker)
 
 source $ZSH/oh-my-zsh.sh
 source /Users/minh/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -11,10 +11,12 @@ export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/node@8/bin:$PATH"
+export PATH="/usr/local/opt/node@10/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="/Users/minh/Library/Android/sdk/platform-tools:$PATH"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export ANDROID_SDK=/Users/minh/Library/Android/sdk
 
 source /Users/minh/.phpbrew/bashrc
 source ~/.zprofile
@@ -55,9 +57,13 @@ alias vvrc="vim ~/.vimrc"
 alias be1666="bundle _1.16.6_ exec"
 alias be1661="bundle _1.16.1_ exec"
 alias ctags="`brew --prefix`/bin/ctags"
+alias dcr="docker-compose run --rm runner"
+alias dcrt="docker-compose run --rm runner_test"
+alias find_large_files="mdfind 'kMDItemFSSize > 2000000000'"
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/minh/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
