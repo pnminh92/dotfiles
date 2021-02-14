@@ -1,24 +1,24 @@
-export ZSH=/Users/minh/.oh-my-zsh
+export ZSH=/Users/minhphan/.oh-my-zsh
 ZSH_THEME="steeef"
-plugins=(git rake bundler composer sublime vagrant heroku npm gem vi-mode yarn docker)
+plugins=(git rake bundler composer sublime vagrant heroku npm gem vi-mode)
 
 source $ZSH/oh-my-zsh.sh
-source /Users/minh/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /Users/minhphan/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.bin/tmuxinator.zsh
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export TERM=xterm-256color
+export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/node@10/bin:$PATH"
+export PATH="/usr/local/opt/node@14/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PATH="/Users/minh/Library/Android/sdk/platform-tools:$PATH"
+export PATH="/Users/minhphan/Library/Android/sdk/platform-tools:$PATH"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export ANDROID_SDK=/Users/minh/Library/Android/sdk
+export ANDROID_SDK=/Users/minhphan/Library/Android/sdk
 
-source /Users/minh/.phpbrew/bashrc
 source ~/.zprofile
 
 HISTFILE=~/.zsh_history
@@ -61,9 +61,9 @@ alias dcr="docker-compose run --rm runner"
 alias dcrt="docker-compose run --rm runner_test"
 alias find_large_files="mdfind 'kMDItemFSSize > 2000000000'"
 
+
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/minh/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
-export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+HEROKU_AC_ZSH_SETUP_PATH=/Users/minhphan/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
