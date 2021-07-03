@@ -1,0 +1,43 @@
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+
+key_bindings:
+  - { key: Q, mods: Control, chars: "\x11" }
+
+font:
+  size: 14
+  offset:
+      x: 0
+      y: 3
+
+custom_cursor_colors: true
+
+colors:
+  primary:
+    background: "0x2d2a2e"
+    foreground: "0xe3e1e4"
+
+  normal:
+    black: "0x1a181a"
+    red: "0xf85e84"
+    green: "0x9ecd6f"
+    yellow: "0xe5c463"
+    blue: "0x7accd7"
+    magenta: "0xab9df2"
+    cyan: "0xef9062"
+    white: "0xe3e1e4"
+
+  bright:
+    black: "0x1a181a"
+    red: "0xf85e84"
+    green: "0x9ecd6f"
+    yellow: "0xe5c463"
+    blue: "0x7accd7"
+    magenta: "0xab9df2"
+    cyan: "0xef9062"
+    white: "0xe3e1e4"
+
+scrolling:
+  history: 20000
