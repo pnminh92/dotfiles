@@ -12,9 +12,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-rails'
-Plug 'vim-ruby/vim-ruby'
-Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/indentLine'
@@ -33,20 +30,21 @@ Plug 'itchyny/lightline.vim'
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
 Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'sainnhe/sonokai'
 Plug 'hrsh7th/nvim-compe'
+Plug 'folke/tokyonight.nvim'
+Plug 'vim-ruby/vim-ruby'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'joshdick/onedark.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 call plug#end()
 filetype plugin indent on
 
 syntax on
-let g:sonokai_style = 'shusia'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-colorscheme sonokai
+colorscheme onedark
 let t_CO=256
 let g:is_posix = 1
 
@@ -58,7 +56,7 @@ set nowrap
 set number
 set regexpengine=1
 set noshowcmd
-set synmaxcol=200
+set synmaxcol=300
 set nocursorline
 
 " Save settings
@@ -101,9 +99,8 @@ set mouse=""
 " Copy to clipboard
 set clipboard=unnamedplus
 
-" folding
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
+" nvim-compe
+set completeopt=menuone,noselect
 
 set nrformats=
 nnoremap + <C-a>
@@ -157,7 +154,7 @@ let g:multi_cursor_select_all_word_key = '<C-a>'
 let g:multi_cursor_select_all_key      = 'g<C-a>'
 
 let g:lightline = {
-      \ 'colorscheme': 'darcula',
+      \ 'colorscheme': 'onedark',
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
       \ }
@@ -213,7 +210,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 let g:ale_fixers = {
 \   'ruby': ['rubocop'],
-\   'javascript': ['prettier']
+\   'javascript': ['prettier', 'eslint']
 \}
 let g:ale_linters = {
 \   'ruby': ['rubocop'],
@@ -222,6 +219,7 @@ let g:ale_linters = {
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_ruby_rubocop_executable = 'bundle'
+nnoremap <Leader>b :ALEFix<CR>
 
 let g:lightline.component_expand = {
       \  'linter_checking': 'lightline#ale#checking',
@@ -242,6 +240,30 @@ let g:lightline.active = { 'right': [
       \ [ 'percent' ],
       \ [ 'fileformat', 'fileencoding', 'filetype' ],
       \ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map zj <Plug>(easymotion-j)
+map zk <Plug>(easymotion-k)
 
 lua << EOF
   local nvim_lsp = require('lspconfig')
@@ -270,7 +292,7 @@ lua << EOF
     buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
@@ -290,25 +312,12 @@ lua << EOF
     }
   end
 
-  require'nvim-treesitter.configs'.setup {
-    highlight = {
-      enable = true
-    },
-
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "gnn",
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm",
-      },
-    },
-
-    indent = {
-      enable = true
-    },
-  }
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      -- delay update diagnostics
+      update_in_insert = false,
+    }
+  )
 
   -- Compe setup
   require'compe'.setup {
@@ -328,6 +337,8 @@ lua << EOF
     source = {
       path = true;
       nvim_lsp = true;
+      buffer = true;
+      treesitter = false;
     };
   }
 

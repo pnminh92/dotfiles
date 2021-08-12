@@ -15,29 +15,37 @@ font:
 custom_cursor_colors: true
 
 colors:
+  # Default colors
   primary:
-    background: "0x2d2a2e"
-    foreground: "0xe3e1e4"
+    foreground: '0xabb2bf'
+    background: '0x282c34'
 
+  # Cursor colors
+  cursor:
+    text: '0xffffff'
+    cursor: '0xcf0d7e'
+
+  # Normal colors
   normal:
-    black: "0x1a181a"
-    red: "0xf85e84"
-    green: "0x9ecd6f"
-    yellow: "0xe5c463"
-    blue: "0x7accd7"
-    magenta: "0xab9df2"
-    cyan: "0xef9062"
-    white: "0xe3e1e4"
+    black:   '0x2c323c'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xe5c07b'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0x5c6370'
 
+  # Bright colors
   bright:
-    black: "0x1a181a"
-    red: "0xf85e84"
-    green: "0x9ecd6f"
-    yellow: "0xe5c463"
-    blue: "0x7accd7"
-    magenta: "0xab9df2"
-    cyan: "0xef9062"
-    white: "0xe3e1e4"
+    black:   '0x3e4452'
+    red:     '0xe06c75'
+    green:   '0x98c379'
+    yellow:  '0xe5c07b'
+    blue:    '0x61afef'
+    magenta: '0xc678dd'
+    cyan:    '0x56b6c2'
+    white:   '0xabb2bf'
 
 scrolling:
   history: 20000
