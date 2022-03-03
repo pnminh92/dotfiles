@@ -414,7 +414,7 @@ lua << EOF
 
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
-  local servers = { "solargraph", "cssls", "html", "tsserver" }
+  local servers = { "solargraph", "cssls", "html", "tsserver", "tailwindcss" }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup({
       capabilities = capabilities,
