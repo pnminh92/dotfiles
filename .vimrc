@@ -6,15 +6,14 @@ endif
 
 filetype off
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " let Vundle manage Vundle, required
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdcommenter'
@@ -28,6 +27,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'vim-ruby/vim-ruby'
 Plug '907th/vim-auto-save'
 Plug 'pangloss/vim-javascript'
@@ -36,26 +36,28 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'elzr/vim-json'
 Plug 'easymotion/vim-easymotion'
-Plug 'joshdick/onedark.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'tpope/vim-abolish'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
 Plug 'lukas-reineke/cmp-rg'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'pantharshit00/vim-prisma'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'axvr/photon.vim'
+Plug 'myagko/nymph.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
 filetype plugin indent on
 
 syntax on
-colorscheme onedark
+colorscheme github_dark_dimmed
 let t_CO=256
 let g:is_posix = 1
 
@@ -114,6 +116,7 @@ set clipboard=unnamedplus
 " nvim-cmp
 set completeopt=menu,menuone,noselect
 
+set conceallevel=0
 set nrformats=
 nnoremap + <C-a>
 nnoremap - <C-x>
@@ -148,14 +151,11 @@ au BufReadPost *.ejs set syntax=html
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
-let g:vim_json_syntax_conceal = 0
-
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
 set laststatus=2
-let g:indentLine_char = '┆'
 
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
@@ -168,7 +168,7 @@ let g:multi_cursor_select_all_word_key = '<C-a>'
 let g:multi_cursor_select_all_key      = 'g<C-a>'
 
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'one',
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
       \ }
@@ -237,6 +237,11 @@ let g:ale_linters = {
 \   'typescript': ['eslint', 'tslint'],
 \   'typescriptreact': ['eslint', 'tslint']
 \}
+
+let g:ale_pattern_options = {
+\   '.*node_modules/.*\.js$': {'ale_enabled': 0},
+\   '.*config/webpack/.*\.js$': {'ale_enabled': 0}
+\}
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_ruby_rubocop_executable = 'bundle'
@@ -287,6 +292,7 @@ map zj <Plug>(easymotion-j)
 map zk <Plug>(easymotion-k)
 
 lua << EOF
+  require('ibl').setup()
   local nvim_lsp = require('lspconfig')
 
   -- Use an on_attach function to only map the following keys
@@ -347,74 +353,26 @@ lua << EOF
       ['<C-n>'] = cmp.mapping.select_next_item(),
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          if vim.fn["vsnip#available"](1) == 1 then
-            return feedkey("<Plug>(vsnip-expand-or-jump)", "")
-          end
-          cmp.select_next_item()
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
       ['<C-e>'] = cmp.mapping.close(),
       ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ['<CR>'] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
       },
-      ["<Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif vim.fn["vsnip#available"](1) == 1 then
-          feedkey("<Plug>(vsnip-expand-or-jump)", "")
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-        end
-      end, { "i", "s" }),
-
-      ["<S-Tab>"] = cmp.mapping(function()
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-          feedkey("<Plug>(vsnip-jump-prev)", "")
-        end
-      end, { "i", "s" }),
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'vsnip' },
       { name = 'buffer' },
       { name = 'rg' }
     })
   })
 
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
-    sources = {
-      { name = 'buffer' }
-    }
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
-
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
-  local servers = { "solargraph", "cssls", "html", "tsserver", "tailwindcss" }
+  local servers = { "solargraph", "cssls", "tsserver", "tailwindcss", "jsonls" }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup({
       capabilities = capabilities,
@@ -436,6 +394,7 @@ lua << EOF
 EOF
 
 let g:NERDTreeShowHidden=1
+let g:NERDTreeMinimalMenu=1
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"]             = '<C-S-Down>'
 let g:VM_maps["Add Cursor Up"]               = '<C-S-Up>'
