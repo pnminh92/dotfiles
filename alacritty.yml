@@ -8,64 +8,55 @@ key_bindings:
 
 font:
   normal:
-    # Default:
-    #   - (macOS) Menlo
-    #   - (Linux/BSD) monospace
-    #   - (Windows) Consolas
-    family: JetBrains Mono
-    style: Regular
-
+    family: Zed Mono
+    style: Light Extended
   bold:
-    family: JetBrains Mono
-    style: Bold
-
+    family: Zed Mono
+    style: Bold Extended
   italic:
-    family: JetBrains Mono
-    style: Italic
-
-  bold_italic:
-    family: JetBrains Mono
-    style: Bold Italic
-
-  size: 13
+    family: Zed Mono
+    style: Italic Extended
+  size: 14
   offset:
       x: 0
       y: 3
 
 custom_cursor_colors: true
 
+scrolling:
+  history: 20000
+
 colors:
   # Default colors
   primary:
-    foreground: '0xabb2bf'
-    background: '0x282c34'
+    background: '0x22272e'
+    foreground: '0xadbac7'
 
   # Cursor colors
+  #
+  # These will only be used when the `custom_cursor_colors` field is set to `true`.
   cursor:
-    text: '0xffffff'
-    cursor: '0xcf0d7e'
+    text: '#000000'
+    cursor: '#ffd966'
 
   # Normal colors
   normal:
-    black:   '0x2c323c'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xe5c07b'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0x5c6370'
+    black: '0x545d68'
+    red: '0xf47067'
+    green: '0x57ab5a'
+    yellow: '0xc69026'
+    blue: '0x539bf5'
+    magenta: '0xb083f0'
+    cyan: '0x39c5cf'
+    white: '0x909dab'
 
   # Bright colors
   bright:
-    black:   '0x3e4452'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xe5c07b'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xabb2bf'
-
-scrolling:
-  history: 20000
+    black: '0x636e7b'
+    red: '0xff938a'
+    green: '0x6bc46d'
+    yellow: '0xdaaa3f'
+    blue: '0x6cb6ff'
+    magenta: '0xb083f0'
+    cyan: '0x39c5cf'
+    white: '0x909dab'
