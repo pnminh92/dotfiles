@@ -6,61 +6,71 @@ endif
 
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.config/nvim/plugged')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'valloric/youcompleteme'
-Plugin 'tpope/vim-rails'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'tpope/vim-surround'
-Plugin 'elzr/vim-json'
-Plugin 'othree/html5.vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'pangloss/vim-javascript'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'mileszs/ack.vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'chriskempson/base16-vim'
-Plugin '907th/vim-auto-save'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'posva/vim-vue'
-Plugin 'wakatime/vim-wakatime'
-Plugin 'mattn/emmet-vim'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'alvan/vim-closetag'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'rizzatti/dash.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'mileszs/ack.vim'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'mattn/emmet-vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'godlygeek/tabular'
+Plug 'itchyny/lightline.vim'
+Plug 'dense-analysis/ale'
+Plug 'maximbaz/lightline-ale'
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'vim-ruby/vim-ruby'
+Plug '907th/vim-auto-save'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'tpope/vim-abolish'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'lukas-reineke/cmp-rg'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'pantharshit00/vim-prisma'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'axvr/photon.vim'
+Plug 'myagko/nymph.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 
 syntax on
-colorscheme base16-railscasts
+colorscheme github_dark_dimmed
 let t_CO=256
 let g:is_posix = 1
 
 " Ruler
 set ruler
-set textwidth=100
+set textwidth=80
 set colorcolumn=+1
 set nowrap
-set number relativenumber
+set number
+set regexpengine=1
+set noshowcmd
+set synmaxcol=300
+set nocursorline
 
 " Save settings
 set encoding=utf-8
@@ -93,6 +103,7 @@ set splitbelow
 set splitright
 
 " Autoload file changes
+set autowrite
 set autoread
 au CursorHold * checktime
 
@@ -100,7 +111,17 @@ au CursorHold * checktime
 set mouse=""
 
 " Copy to clipboard
-set clipboard=unnamed
+set clipboard=unnamedplus
+
+" nvim-cmp
+set completeopt=menu,menuone,noselect
+
+set conceallevel=0
+set nrformats=
+nnoremap + <C-a>
+nnoremap - <C-x>
+xnoremap + g<C-a>
+xnoremap - g<C-x>
 
 " Map keys
 let mapleader=","
@@ -114,7 +135,9 @@ nnoremap <Leader>l :NERDTreeFind<CR>
 nnoremap <Leader>f :Dash<CR>
 nnoremap <Esc><Esc> :nohl<CR>
 nnoremap <Leader>s :FixWhitespace<CR>
-nnoremap <leader>. :CtrlPTag<CR>
+nnoremap <C-p> :Files<CR>
+nnoremap <C-g> :Ag<CR>
+nnoremap zz :update<CR>
 
 vnoremap // y/<C-R>"<CR>
 
@@ -125,41 +148,40 @@ nnoremap D "_D
 
 " Set syntax highlighting for special ext
 au BufReadPost *.ejs set syntax=html
-
-" Plugin settings
-let g:auto_save = 1
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
 set laststatus=2
-let g:airline_theme = 'base16_railscasts'
-let g:airline_left_sep = ''        " Remove arrow symbols.
-let g:airline_left_alt_sep = ''    " Remove arrow symbols.
-let g:airline_right_sep = ''       " Remove arrow symbols.
-let g:airline_right_alt_sep = ''   " Remove arrow symbols.
-let g:indentLine_char = '┆'
-
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_use_caching = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-
-let g:vim_json_syntax_conceal = 0
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<Leader-q>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>as :Tabularize /\s<CR>
+vmap <Leader>as :Tabularize /\s<CR>
 
 let g:multi_cursor_select_all_word_key = '<C-a>'
 let g:multi_cursor_select_all_key      = 'g<C-a>'
+
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
+      \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
 
 " Use to break word to newline
 command! -bang -nargs=* -range LineBreakAt <line1>,<line2>call LineBreakAt('<bang>', <f-args>)
@@ -181,3 +203,198 @@ function! LineBreakAt(bang, ...) range
   execute a:firstline . ',' . a:lastline . 's/'. find . '/' . repl . '/ge'
   let @/ = save_search
 endfunction
+
+" COC.NVIM configs
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Better display for messages
+set cmdheight=1
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+let g:auto_save = 1
+let g:auto_save_events = ['CursorHold']
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+let g:ale_fixers = {
+\   'ruby': ['rubocop'],
+\   'javascript': ['prettier', 'eslint'],
+\   'typescriptreact': ['prettier', 'eslint', 'tslint'],
+\   'typescript': ['prettier', 'eslint', 'tslint']
+\}
+let g:ale_linters = {
+\   'ruby': ['rubocop'],
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint', 'tslint'],
+\   'typescriptreact': ['eslint', 'tslint']
+\}
+
+let g:ale_pattern_options = {
+\   '.*node_modules/.*\.js$': {'ale_enabled': 0},
+\   '.*config/webpack/.*\.js$': {'ale_enabled': 0}
+\}
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+let g:ale_ruby_rubocop_executable = 'bundle'
+nnoremap <Leader>b :ALEFix<CR>
+
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_infos': 'lightline#ale#infos',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
+      \ }
+let g:lightline.active = { 'right': [
+      \ [ 'lineinfo' ],
+      \ [ 'percent' ],
+      \ [ 'fileformat', 'fileencoding', 'filetype' ],
+      \ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map zj <Plug>(easymotion-j)
+map zk <Plug>(easymotion-k)
+
+lua << EOF
+  require('ibl').setup()
+  local nvim_lsp = require('lspconfig')
+
+  -- Use an on_attach function to only map the following keys
+  -- after the language server attaches to the current buffer
+  local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    --Enable completion triggered by <c-x><c-o>
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    local opts = { noremap=true, silent=true }
+
+    vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  end
+
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+  end
+  local feedkey = function(key, mode)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+  end
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+      end,
+    },
+    mapping = {
+      ['<C-p>'] = cmp.mapping.select_prev_item(),
+      ['<C-n>'] = cmp.mapping.select_next_item(),
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ['<CR>'] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      },
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'buffer' },
+      { name = 'rg' }
+    })
+  })
+
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+  -- Use a loop to conveniently call 'setup' on multiple servers and
+  -- map buffer local keybindings when the language server attaches
+  local servers = { "solargraph", "cssls", "tsserver", "tailwindcss", "jsonls" }
+  for _, lsp in ipairs(servers) do
+    nvim_lsp[lsp].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      flags = {
+        debounce_text_changes = 150,
+      }
+    })
+  end
+
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false,
+      signs = true,
+      -- delay update diagnostics
+      update_in_insert = false,
+    }
+  )
+EOF
+
+let g:NERDTreeShowHidden=1
+let g:NERDTreeMinimalMenu=1
+let g:VM_maps = {}
+let g:VM_maps["Add Cursor Down"]             = '<C-S-Down>'
+let g:VM_maps["Add Cursor Up"]               = '<C-S-Up>'

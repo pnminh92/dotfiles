@@ -1,0 +1,24 @@
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+
+key_bindings:
+  - { key: Q, mods: Control, chars: "\x11" }
+
+font:
+  size: 14
+  offset:
+      x: 0
+      y: 3
+
+custom_cursor_colors: true
+
+colors:
+  primary:
+    background: '0x191919'
+    foreground: '0xeaeaea'
+
+  cursor:
+    text:   '0xf1c1c1'
+    cursor: '0xff2600'

@@ -1,0 +1,62 @@
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+
+key_bindings:
+  - { key: Q, mods: Control, chars: "\x11" }
+
+font:
+  normal:
+    family: Zed Mono
+    style: Light Extended
+  bold:
+    family: Zed Mono
+    style: Bold Extended
+  italic:
+    family: Zed Mono
+    style: Italic Extended
+  size: 14
+  offset:
+      x: 0
+      y: 3
+
+custom_cursor_colors: true
+
+scrolling:
+  history: 20000
+
+colors:
+  # Default colors
+  primary:
+    background: '0x22272e'
+    foreground: '0xadbac7'
+
+  # Cursor colors
+  #
+  # These will only be used when the `custom_cursor_colors` field is set to `true`.
+  cursor:
+    text: '#000000'
+    cursor: '#ffd966'
+
+  # Normal colors
+  normal:
+    black: '0x545d68'
+    red: '0xf47067'
+    green: '0x57ab5a'
+    yellow: '0xc69026'
+    blue: '0x539bf5'
+    magenta: '0xb083f0'
+    cyan: '0x39c5cf'
+    white: '0x909dab'
+
+  # Bright colors
+  bright:
+    black: '0x636e7b'
+    red: '0xff938a'
+    green: '0x6bc46d'
+    yellow: '0xdaaa3f'
+    blue: '0x6cb6ff'
+    magenta: '0xb083f0'
+    cyan: '0x39c5cf'
+    white: '0x909dab'
