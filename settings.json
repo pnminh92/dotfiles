@@ -1,0 +1,101 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed // // To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "edit_predictions": {
+    "provider": "none"
+  },
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_profile": "ask",
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-2.5-pro"
+    },
+  },
+  "theme": "One Dark",
+  "tab_size": 2,
+  "preferred_line_length": 100,
+  "soft_wrap": "none",
+  "buffer_font_size": 14.0,
+  "buffer_font_features": {
+    "calt": false
+  },
+  "file_finder": {
+    "modal_max_width": "medium", // Horizontal size: small, medium, large, xlarge, full
+  },
+  "ui_font_family": "Zed Plex Mono",
+  "autosave": "on_focus_change",
+  "jsx_tag_auto_close": {
+    "enabled": false
+  },
+  // "file_scan_inclusions": [
+  //   "bundle/ruby/3.3.0/gems/**"
+  // ],
+  "file_scan_exclusions": [
+    "app/javascript/prod_precompiled_routes.js"
+  ],
+  "format_on_save": "off",
+  "vim_mode": true,
+  "projects_online_by_default": false,
+  "use_autoclose": false,
+  "use_auto_surround": false,
+  "vim": {
+    "use_system_clipboard": "on_yank"
+  },
+  "scrollbar": {
+    "git_diff": false
+  },
+  "file_types": {
+    "HTML": ["html", "erb"],
+    "Ruby": ["rb"]
+  },
+  "languages": {
+    "Ruby": {
+      "language_servers": ["ruby-lsp", "!solargraph", "!rubocop", "!sorbet", "!steep", "!herb", "..."]
+    },
+    "ERB": {
+      "enable_language_server": false
+    },
+    "HTML+ERB": {
+      "language_servers": ["ruby-lsp", "!herb", "..."]
+    },
+    "YAML+ERB": {
+      "enable_language_server": false
+    },
+    "TypeScript": {
+      "language_servers": ["typescript-language-server", "tailwindcss-language-server", "!vtsls", "..."]
+    },
+    "TSX": {
+      "language_servers": ["typescript-language-server", "tailwindcss-language-server", "!vtsls", "..."]
+    },
+    "JSX": {
+      "language_servers": ["typescript-language-server", "tailwindcss-language-server", "!vtsls", "..."]
+    },
+    "JavaScript": {
+      "language_servers": ["typescript-language-server", "tailwindcss-language-server", "!vtsls", "..."]
+    }
+  },
+  "lsp": {
+    "ruby-lsp": {
+      "linters": [],
+      "initialization_options": {
+        "enabledFeatures": {
+          "diagnostics": false,
+          "onTypeFormatting": false
+        }
+      }
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "classFunctions": ["cva", "cx", "classNames"],
+        "experimental": {
+          "classRegex": ["[cls|className|class]\\s\\:\\=\\s\"([^\"]*)"],
+        },
+      },
+    },
+  }
+}
